@@ -446,6 +446,10 @@ MonoBehaviour:
   dodgeSpeed: 10
   dodgeDuration: 0.25
   dodgeCooldown: 0.5
+  invincibleStartTime: 0.05
+  invincibleEndTime: 0.25
+  reflectStartTime: 0.12
+  reflectEndTime: 0.2
   dodgeCollider: {fileID: 525984643}
   reflectCollider: {fileID: 2650339}
 --- !u!1 &330585543
@@ -900,7 +904,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.9291997, y: 1.7932637, z: 2.6130102}
   m_Center: {x: 0, y: 0.0048063993, z: 0.30774033}
