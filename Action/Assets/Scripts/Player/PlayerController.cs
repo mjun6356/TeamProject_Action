@@ -80,29 +80,18 @@ public class PlayerController : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector2 input = playerInput.MoveInput;
+        Vector3 cameraForward = cameraTransform.forward;
 
-        if (input.sqrMagnitude < 0.01f)
+        // 위/아래 기울기는 회전에 사용하지 않는다.
+        cameraForward.y = 0f;
+
+        if (cameraForward.sqrMagnitude < 0.01f)
             return;
 
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
-
-        forward.y = 0f;
-        right.y = 0f;
-
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 moveDirection =
-            forward * input.y +
-            right * input.x;
-
-        if (moveDirection.sqrMagnitude < 0.01f)
-            return;
+        cameraForward.Normalize();
 
         Quaternion targetRotation =
-            Quaternion.LookRotation(moveDirection);
+            Quaternion.LookRotation(cameraForward);
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
