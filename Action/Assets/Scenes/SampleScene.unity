@@ -218,6 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650338}
+  - component: {fileID: 2650339}
   m_Layer: 0
   m_Name: ReflectCollider
   m_TagString: Untagged
@@ -240,6 +241,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 112043186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2650339
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2650337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.3706588
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &112043185
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +275,9 @@ GameObject:
   - component: {fileID: 112043187}
   - component: {fileID: 112043188}
   - component: {fileID: 112043190}
+  - component: {fileID: 112043191}
+  - component: {fileID: 112043192}
+  - component: {fileID: 112043193}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -368,6 +393,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a057cac0bd090684aa21673e2d8bf892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+--- !u!114 &112043191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112043185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bcbc9125be59745ad817038e3abc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  maxHealth: 100
+  swordDamage: 30
+  bulletDamage: 20
+--- !u!114 &112043192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112043185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc50d57618551846859678dbdbd5c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  playerInput: {fileID: 112043190}
+  playerStats: {fileID: 112043191}
+  attackCooldown: 0.3
+  attackDuration: 0.35
+  hitboxStartTime: 0.08
+  hitboxDuration: 0.15
+  projectilePrefab: {fileID: 7898387612967091671, guid: c49442087e72f3b4ab7dbc523fd93942, type: 3}
+  attackOrigin: {fileID: 1610224964}
+  projectileSpeed: 15
+  attackHitbox: {fileID: 0}
+--- !u!114 &112043193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112043185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0f5fe9407d75f4da939d0eef78f888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDodge
+  playerInput: {fileID: 112043190}
+  dodgeSpeed: 10
+  dodgeDuration: 0.25
+  dodgeCooldown: 0.5
+  dodgeCollider: {fileID: 525984643}
+  reflectCollider: {fileID: 2650339}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479594069}
   - component: {fileID: 479594070}
+  - component: {fileID: 479594071}
   m_Layer: 0
   m_Name: AttackHitbox
   m_TagString: Untagged
@@ -823,6 +904,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9291997, y: 1.7932637, z: 2.6130102}
   m_Center: {x: 0, y: 0.0048063993, z: 0.30774033}
+--- !u!114 &479594071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479594068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d3a59df9b0f9e43894ab38fc63ce31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackHitbox
 --- !u!1 &525984641
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525984642}
+  - component: {fileID: 525984643}
   m_Layer: 0
   m_Name: DodgeCollider
   m_TagString: Untagged
@@ -854,6 +948,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 112043186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &525984643
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525984641}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.0602386
+  m_Center: {x: 0, y: 0, z: 0.0028444529}
 --- !u!1 &550018663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1523,7 @@ Transform:
   m_GameObject: {fileID: 1610224963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
